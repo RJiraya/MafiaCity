@@ -1,4 +1,0 @@
-MafiaCity
-=========
-
-Mafia City Game
