@@ -1,4 +1,4 @@
-# [![MEAN Logo](http://www.mean.io/img/logos/meanlogo.png)](http://mean.io/) MEAN Stack
+# [![MEAN Logo](http://www.mean.io/img/logos/meanlogo.png)](http://mean.io/) Mafia City
 
 [![Build Status](https://travis-ci.org/linnovate/mean.png?branch=master)](https://travis-ci.org/linnovate/mean)
 [![Dependencies Status](https://david-dm.org/linnovate/mean.png)](https://david-dm.org/linnovate/mean)
@@ -25,20 +25,20 @@ $ npm install -g grunt-cli
 
 
 ## Quick Install
-  Récupérer les sources sur le gitHub RJiraya/MafiaCity/trunk.
-  Une fois dans le dossier, éxécutez : 
+  * Récupérer les sources sur le gitHub RJiraya/MafiaCity/trunk.
+  * Une fois dans le dossier, éxécutez : 
   
   '''
   $ npm install
   '''
   
-  Puis pour lancer le serveur
+  * Puis pour lancer le serveur
   
   '''
   $ grunt
   '''
   
-  Assurez vous d'avoir lancé MangoDB
+  * Assurez vous d'avoir lancé MangoDB
   
   
   
