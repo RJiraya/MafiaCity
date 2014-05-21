@@ -6,6 +6,10 @@ angular.module('mean.game').config(['$stateProvider',
             url: '/game/example',
             templateUrl: 'game/views/index.html'
         })
+		.state('game gang', {
+			url: '/game/gang',
+			templateUrl: 'game/views/gang.html',			
+        })
         .state('game hideaway', {
 			url: '/game/hideaway',
 			templateUrl: 'game/views/hideaway.html',			

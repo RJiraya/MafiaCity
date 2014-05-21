@@ -1,6 +1,6 @@
 'use strict';
 
-var game = require('../controllers/game');
+//var game = require('../controllers/game');
 
 // The Package is past automatically as first parameter
 module.exports = function(Game, app, auth, database) {
@@ -17,8 +17,17 @@ module.exports = function(Game, app, auth, database) {
         res.send('Only users with Admin role can access this');
     });
     
-    app.get('/game/hideaway', function(req, res, next) {
+    app.get('/game/hideaway/renderer', function(req, res, next) {
         Game.render('hideaway', {
+            package: 'game'
+        }, function(err, html) {
+            //Rendering a view from the Package server/views
+            res.send(html);
+        });
+    });
+    
+    app.get('/game/gang/renderer', function(req, res, next) {
+        Game.render('gang', {
             package: 'game'
         }, function(err, html) {
             //Rendering a view from the Package server/views

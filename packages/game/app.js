@@ -33,7 +33,7 @@ Game.register(function(app, auth, database) {
 	
     Game.menus.add({
         title: 'Gang',
-        link: 'game hideaway',
+        link: 'game gang',
         roles: ['authenticated'],
         menu: 'main'
     });
