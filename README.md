@@ -25,20 +25,20 @@ $ npm install -g grunt-cli
 
 
 ## Quick Install
-  * Récupérer les sources sur le gitHub RJiraya/MafiaCity/trunk.
-  * Une fois dans le dossier, éxécutez : 
+  Récupérer les sources sur le gitHub RJiraya/MafiaCity/trunk.
+  Une fois dans le dossier, éxécutez : 
   
-  '''
+  ```
   $ npm install
-  '''
+  ```
   
-  * Puis pour lancer le serveur
+  Puis pour lancer le serveur
   
-  '''
+  ```
   $ grunt
-  '''
-  
-  * Assurez vous d'avoir lancé MangoDB
+  ```
+
+  Assurez vous d'avoir lancé MangoDB
   
   
   
