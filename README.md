@@ -21,7 +21,7 @@ $ npm install -g grunt-cli
 
 
 ## Quick Install
-  Récupérer les sources sur le gitHub RJiraya/MafiaCity/trunk.
+  Récupérer les sources sur le gitHub RJiraya/MafiaCity/trunk. Utiliser svn checkout avec l'url 'RJiraya/MafiaCity/trunk'
   Une fois dans le dossier, éxécutez : 
   
   ```
@@ -36,8 +36,16 @@ $ npm install -g grunt-cli
 
   Assurez vous d'avoir lancé MangoDB
   
+## Mettre à jour son projet & valider ses modifications
+
+  * Update
   
+  Mets à jour son code, par rapport au version des autres membres
+
+  * Commit 
   
+  Valide les modifications de son code. ATTENTION ne pas commit les librairies! 
+  Ne pas commit : .project, .bower_tmp, .bower_registry, .bower_cache, node_modules, public/system/lib!
   
 ## License
 [The MIT License](http://opensource.org/licenses/MIT)
