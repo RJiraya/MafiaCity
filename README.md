@@ -3,7 +3,7 @@
 
 ## Prerequisites
 * Node.js - Download and Install [Node.js](http://www.nodejs.org/download/). You can also follow [this gist](https://gist.github.com/isaacs/579814) for a quick and easy way to install Node.js and npm
-* MongoDB - Download and Install [MongoDB](http://docs.mongodb.org/manual/installation/) - Make sure `mongod` is running on the default port (27017).
+* MongoDB - Download and Install [MongoDB](http://docs.mongodb.org/manual/installation/) - Make sure `mongod` is running on the default port (27017). Tout est expliqué dans l'installation.
 
 ### Tools Prerequisites
 * NPM - Node.js package manage; should be installed when you install node.js.
@@ -13,7 +13,7 @@
 $ npm install -g bower
 ```
 
-* Grunt - Download and Install [Grunt](http://gruntjs.com).
+* Grunt - Download and Install [Grunt](http://gruntjs.com). 
 
 ```
 $ npm install -g grunt-cli
