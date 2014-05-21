@@ -10,6 +10,7 @@ module.exports = function(app, passport) {
     app.route('/users/me')
         .get(users.me);
 
+
     // Setting up the users api
     app.route('/register')
         .post(users.create);

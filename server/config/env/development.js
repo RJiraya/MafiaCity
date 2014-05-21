@@ -3,11 +3,11 @@
 module.exports = {
     db: 'mongodb://localhost/mean-dev',
     app: {
-        name: 'MEAN - FullStack JS - Development'
+        name: 'Mafia City - DEV'
     },
     facebook: {
-        clientID: 'APP_ID',
-        clientSecret: 'APP_SECRET',
+        clientID: '878007522215043',
+        clientSecret: 'b1ff7227d8af7e72ecc2272c5da5654d',
         callbackURL: 'http://localhost:3000/auth/facebook/callback'
     },
     twitter: {
