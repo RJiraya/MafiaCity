@@ -1,6 +1,9 @@
 'use strict';
+/**
+ *  Route Client
+ */
 
-angular.module('mean.game').config(['$stateProvider',
+angular.module('GameController').config(['$stateProvider',
     function($stateProvider) {
         $stateProvider.state('game example page', {
             url: '/game/example',
@@ -8,11 +11,11 @@ angular.module('mean.game').config(['$stateProvider',
         })
 		.state('game gang', {
 			url: '/game/gang',
-			templateUrl: 'game/views/gang.html',			
+			templateUrl: 'game/views/gang.html'
         })
         .state('game hideaway', {
 			url: '/game/hideaway',
-			templateUrl: 'game/views/hideaway.html',			
+			templateUrl: 'game/views/hideaway.html'
         });
     }
 ]);

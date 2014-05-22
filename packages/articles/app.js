@@ -28,7 +28,7 @@ Articles.register(function(app, auth, database) {
         'link': 'create article'
     });
 
-    /*
+    /**
     //Uncomment to use. Requires meanio@0.3.7 or above
     // Save settings with callback
     // Use this for saving data from administration pages

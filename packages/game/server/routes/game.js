@@ -1,4 +1,7 @@
 'use strict';
+/**
+ * Route Server
+ */
 
 //var game = require('../controllers/game');
 
@@ -21,7 +24,7 @@ module.exports = function(Game, app, auth, database) {
         Game.render('hideaway', {
             package: 'game'
         }, function(err, html) {
-            //Rendering a view from the Package server/views
+            /*Rendering a view from the Package server/views*/
             res.send(html);
         });
     });
