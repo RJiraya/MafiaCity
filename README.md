@@ -19,6 +19,12 @@ $ npm install -g bower
 $ npm install -g grunt-cli
 ```
 
+* Mean.io
+
+```
+$ npm install -g meanio
+```
+
 
 ## Quick Install
   Récupérer les sources sur le gitHub RJiraya/MafiaCity/trunk. Utiliser svn checkout avec l'url 'RJiraya/MafiaCity/trunk'
