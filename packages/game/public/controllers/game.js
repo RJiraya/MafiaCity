@@ -3,30 +3,42 @@
  *  Controller Client
  */
 
-angular.module('GameController', []).controller('GameController', ['$scope', '$location', 'Global',
-    function($scope,  $location, Global) {
+angular.module('mean').controller('GameController', ['$scope', '$location', '$stateParams', 'Global', 'Gang',
+    function($scope,  $location, $stateParams, Global, Gang) {
         $scope.global = Global;
-
-        $scope.hasGang = true;
 
         $scope.package = {
             name: 'game'
         };
 
+
+        /**
+         * Gangs
+         */
+        $scope.findAllGang = function(){
+            Gang.query(function(gangs) {
+                $scope.gangs = gangs;
+            });
+        };
+
+        $scope.findGang = function() {
+            Gang.get({
+                gangId: $scope.global.user.gang
+            }, function(gang) {
+                $scope.gang = gang;
+            });
+        };
+
         $scope.createGang = function() {
-            /*
             var gang = new Gang({
                 name: this.name,
                 description: this.description
             });
 
             gang.$save(function(response) {
-                $location.path('game/gang');
+                $location.path('/gangs/list');
+                $scope.gangs.push(response);
             });
-
-            this.title = '';
-            this.content = '';
-            */
         };
     }
 ]);

@@ -5,7 +5,7 @@
  */
 var Module = require('meanio').Module;
 
-var Game = new Module('game');
+var Game = new Module('Game');
 
 /*
  * All MEAN packages require registration
@@ -32,8 +32,15 @@ Game.register(function(app, auth, database) {
     });
 	
     Game.menus.add({
-        title: 'Gang',
-        link: 'game gang',
+        title: 'Gangs List',
+        link: 'gangs list',
+        roles: ['authenticated'],
+        menu: 'main'
+    });
+
+    Game.menus.add({
+        title: 'Mon Gang',
+        link: 'gangs',
         roles: ['authenticated'],
         menu: 'main'
     });

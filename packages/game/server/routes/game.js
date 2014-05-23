@@ -3,7 +3,7 @@
  * Route Server
  */
 
-//var game = require('../controllers/game');
+var game = require('../controllers/game');
 
 // The Package is past automatically as first parameter
 module.exports = function(Game, app, auth, database) {
@@ -20,7 +20,7 @@ module.exports = function(Game, app, auth, database) {
         res.send('Only users with Admin role can access this');
     });
     
-    app.get('/game/hideaway/renderer', function(req, res, next) {
+    app.get('/hideaway/renderer', function(req, res, next) {
         Game.render('hideaway', {
             package: 'game'
         }, function(err, html) {
@@ -29,7 +29,7 @@ module.exports = function(Game, app, auth, database) {
         });
     });
     
-    app.get('/game/gang/renderer', function(req, res, next) {
+    app.get('/gangs/renderer', function(req, res, next) {
         Game.render('gang', {
             package: 'game'
         }, function(err, html) {
@@ -46,4 +46,14 @@ module.exports = function(Game, app, auth, database) {
             res.send(html);
         });
     });
+
+
+    app.route('/gangs')
+        .get(game.getAllGang)
+        .post(auth.requiresLogin, game.createGang);
+    app.route('/gangs/:gangId')
+        .get(game.getGang);
+
+    // Finish with setting up the articleId param
+    app.param('gangId', game.gang);
 };
