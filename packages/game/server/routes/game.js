@@ -51,9 +51,9 @@ module.exports = function(Game, app, auth, database) {
     app.route('/gangs')
         .get(game.getAllGang)
         .post(auth.requiresLogin, game.createGang);
-    app.route('/gangs/:gangId')
+    app.route('/gangs/:id')
         .get(game.getGang);
 
-    // Finish with setting up the articleId param
-    app.param('gangId', game.gang);
+    // Finish with setting up the gangId param
+    app.param('id', game.gang);
 };

@@ -3,8 +3,8 @@
  *  Controller Client
  */
 
-angular.module('mean').controller('GameController', ['$scope', '$location', '$stateParams', 'Global', 'Gang',
-    function($scope,  $location, $stateParams, Global, Gang) {
+angular.module('mean').controller('GameController', ['$scope', '$location', '$stateParams', 'Global', 'Gang', 'Articles',
+    function($scope,  $location, $stateParams, Global, Gang, Articles) {
         $scope.global = Global;
 
         $scope.package = {
@@ -23,7 +23,7 @@ angular.module('mean').controller('GameController', ['$scope', '$location', '$st
 
         $scope.findGang = function() {
             Gang.get({
-                gangId: $scope.global.user.gang
+                id: '537e63a274da97301e165543'
             }, function(gang) {
                 $scope.gang = gang;
             });

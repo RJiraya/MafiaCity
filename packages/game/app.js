@@ -26,7 +26,7 @@ Game.register(function(app, auth, database) {
 	
     Game.menus.add({
         title: 'Planque',
-        link: 'game hideaway',
+        link: 'hideaway',
         roles: ['authenticated'],
         menu: 'main'
     });

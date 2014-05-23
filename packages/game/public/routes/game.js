@@ -14,11 +14,11 @@ angular.module('mean').config(['$stateProvider',
 			templateUrl: 'game/views/gangSearch.html'
         })
         .state('gangs', {
-            url: '/gangs/:gangId/edit',
+            url: '/gangs/:gangId',
             templateUrl: 'game/views/gangDetail.html'
         })
         .state('hideaway', {
-			url: '/game/hideaway',
+			url: '/hideaway',
 			templateUrl: 'game/views/hideaway.html'
         });
     }

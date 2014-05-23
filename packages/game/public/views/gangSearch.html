@@ -18,9 +18,9 @@
                         <span>{{gang.created | date:'medium'}}</span> /
                         <span>{{gang.boss.name}}</span>
                         <h2>
-                            <a data-ng-href="#!/game/gang/{{gang._id}}/edit">{{gang.name}}</a>
+                            <a data-ng-href="#!/gangs/{{gang._id}}">{{gang.name}}</a>
                             <span data-ng-if="hasAuthorization(gang)">
-                                <a class="btn" href="/#!/game/gangs/{{gang._id}}/edit">
+                                <a class="btn" href="/#!/gangs/{{gang._id}}/edit">
                                     <i class="glyphicon glyphicon-edit"></i>
                                 </a>
                                 <a class="btn" data-ng-click="remove(gang);">
@@ -28,7 +28,7 @@
                                 </a>
                             </span>
                         </h2>
-                        <div>{{article.content}}</div>
+                        <div>{{gang.description}}</div>
                     </li>
                 </ul>
             </div>

@@ -53,7 +53,7 @@ exports.createGang = function(req, res) {
  * Find gang by id
  */
 exports.getGang = function(req, res, next, id) {
-    res.jsonp(req.article);
+    res.jsonp(req.gang);
 };
 
 
