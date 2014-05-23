@@ -39,6 +39,10 @@ var UserSchema = new Schema({
         type: Array,
         default: ['authenticated']
     },
+    gang: {
+        type: Schema.ObjectId,
+        ref: 'Gang'
+    },
     hashed_password: {
         type: String,
         validate: [validatePresenceOf, 'Password cannot be blank']
