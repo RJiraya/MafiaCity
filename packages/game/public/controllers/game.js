@@ -21,6 +21,20 @@ angular.module('mean').controller('GameController',
             });
         };
 
+        $scope.joinGang = function(id){
+            Gang.join(id, function(gang){
+                console.log(gang);
+                $scope.gang = gang;
+                $scope.global.user.gang = gang._id;
+            });
+        };
+
+        $scope.leaveGang = function(){
+            Gang.leave(function(){
+
+            });
+        };
+
         $scope.findGang = function() {
             Gang.get({
                 id: $scope.global.user.gang

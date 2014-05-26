@@ -49,8 +49,30 @@ exports.createGang = function(req, res) {
             res.jsonp(gang);
         }
     });
+};
+
+/**
+ * Join Gang
+ */
+exports.joinGang = function(req, res, id) {
+    Gang.load(id, function(err, gang) {
+        gang.members.push(req.user);
+        req.user.gang = gang;
+        gang.save(function(){
+            gang.save();
+            res.jsonp(gang);
+        });
+    });
+};
 
 
+/**
+ * Leave Gang
+ */
+exports.leaveGang = function(req, res) {
+    res.jsonp({
+       ok : true
+    });
 };
 
 
@@ -59,7 +81,6 @@ exports.createGang = function(req, res) {
  */
 exports.getGang = function(req, res, next, id) {
     Gang.load(id, function(err, gang) {
-        console.log(gang);
         if (err) return next(err);
         if (!gang) return next(new Error('Failed to load gang ' + id));
         res.jsonp(gang);

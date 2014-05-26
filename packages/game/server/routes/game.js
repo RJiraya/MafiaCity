@@ -51,6 +51,14 @@ module.exports = function(Game, app, auth, database) {
         game.getGang(req, res, next, req.params.id);
     });
 
+    app.post('/gangs/leave', function(req, res, next) {
+        game.leaveGang(req, res);
+    });
+
+    app.post('/gangs/:id/join', function(req, res, next) {
+        game.joinGang(req, res, req.params.id);
+    });
+
     app.route('/gangs')
         .get(game.getAllGang)
         .post(auth.requiresLogin, game.createGang);

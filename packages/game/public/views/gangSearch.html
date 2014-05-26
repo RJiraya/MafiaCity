@@ -1,7 +1,7 @@
 <section data-ng-controller="GameController" data-ng-init="findAllGang()" >
 
 
-    <div class="row" data-ng-show="global.user.gang === undefined">
+    <div class="row" data-ng-hide="global.user.gang === undefined">
         <div class="col-md-offset-6 col-md-6">
             <form class="form-horizontal" role="form" data-ng-submit="createGang()">
                 <div class="form-group">
@@ -49,12 +49,14 @@
                     <tr>
                         <th>Name</th>
                         <th>Description</th>
+                        <th ng-hide="global.user.gang === undefined"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="gangItem in gangs" ng-show="(gangItem.name.indexOf(nameFilter) > -1)">
                         <td>{{gangItem.name}}</td>
                         <td>{{gangItem.description}}</td>
+                        <td ng-hide="global.user.gang === undefined"><button class="btn btn-info" ng-click="joinGang(gangItem._id)">Join</button></td>
                     </tr>
                 </tbody>
             </table>

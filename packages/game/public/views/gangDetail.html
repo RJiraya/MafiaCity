@@ -1,12 +1,17 @@
 <section data-ng-controller="GameController" data-ng-init="findGang()" >
     <div class="row">
-        <label>Gang Name</label>
-        <span>{{gang.name}}</span>
+        <div class="form-group">
+            <label>Gang Name</label>
+            <span>{{gang.name}}</span>
+
+        </div>
+        <div class="form-group">
+            <label>Boss</label>
+            <span>{{gang.boss.name}}</span>
+        </div>
+        <button class="btn btn-info" ng-click="leaveGang()">Leave</button>
     </div>
-    <div class="row">
-        <label>Boss</label>
-        <span>{{gang.boss.name}}</span>
-    </div>
+
     <!-- Table -->
     <table class="table">
         <thead>
