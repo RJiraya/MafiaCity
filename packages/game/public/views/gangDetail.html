@@ -1,9 +1,28 @@
 <section data-ng-controller="GameController" data-ng-init="findGang()" >
     <div class="row">
         <label>Gang Name</label>
-        <span>{{myGang.name}}</span>
-        {{gang}}
+        <span>{{gang.name}}</span>
     </div>
-    {{global}}
-    "{{gangs}}"
+    <div class="row">
+        <label>Boss</label>
+        <span>{{gang.boss.name}}</span>
+    </div>
+    <!-- Table -->
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Username</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="member in gang.members">
+            <td>{{member._id}}</td>
+            <td>{{member.name}}</td>
+            <td>{{member.username}}</td>
+        </tr>
+        </tbody>
+    </table>
+    {{gang}}
 </section>

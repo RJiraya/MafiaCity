@@ -29,7 +29,7 @@ module.exports = function(Game, app, auth, database) {
         });
     });
     
-    app.get('/gangs/renderer', function(req, res, next) {
+    app.get('/gangs/', function(req, res, next) {
         Game.render('gang', {
             package: 'game'
         }, function(err, html) {
@@ -47,13 +47,11 @@ module.exports = function(Game, app, auth, database) {
         });
     });
 
+    app.get('/gangs/:id', function(req, res, next) {
+        game.getGang(req, res, next, req.params.id);
+    });
 
     app.route('/gangs')
         .get(game.getAllGang)
         .post(auth.requiresLogin, game.createGang);
-    app.route('/gangs/:id')
-        .get(game.getGang);
-
-    // Finish with setting up the gangId param
-    app.param('id', game.gang);
 };

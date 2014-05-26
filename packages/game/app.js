@@ -67,5 +67,7 @@ Game.register(function(app, auth, database) {
     });
     */
 
+    Game.aggregateAsset('css', 'game.css');
+
     return Game;
 });

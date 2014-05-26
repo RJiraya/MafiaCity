@@ -15,10 +15,16 @@ var mongoose = require('mongoose'),
  * Find gang by id
  */
 exports.gang = function(req, res, next, id) {
+
+
     Gang.load(id, function(err, gang) {
+        console.log(gang);
+
+        /*
         if (err) return next(err);
         if (!gang) return next(new Error('Failed to load gang ' + id));
         req.gang = gang;
+        next();*/
         next();
     });
 };
@@ -30,8 +36,7 @@ exports.createGang = function(req, res) {
 	var gang = new Gang(req.body);
 
     gang.boss = req.user;
-
-    gang.members.push(req.user._id);
+    gang.members.push(req.user);
 
 	gang.save(function(err) {
         if (err) {
@@ -53,7 +58,13 @@ exports.createGang = function(req, res) {
  * Find gang by id
  */
 exports.getGang = function(req, res, next, id) {
-    res.jsonp(req.gang);
+    Gang.load(id, function(err, gang) {
+        console.log(gang);
+        if (err) return next(err);
+        if (!gang) return next(new Error('Failed to load gang ' + id));
+        res.jsonp(gang);
+    });
+
 };
 
 

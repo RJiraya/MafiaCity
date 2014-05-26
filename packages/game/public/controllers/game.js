@@ -3,14 +3,14 @@
  *  Controller Client
  */
 
-angular.module('mean').controller('GameController', ['$scope', '$location', '$stateParams', 'Global', 'Gang', 'Articles',
-    function($scope,  $location, $stateParams, Global, Gang, Articles) {
+angular.module('mean').controller('GameController',
+    function($scope,  $location, $stateParams, Global, Gang) {
         $scope.global = Global;
 
         $scope.package = {
             name: 'game'
         };
-
+        $scope.nameFilter = '';
 
         /**
          * Gangs
@@ -23,7 +23,7 @@ angular.module('mean').controller('GameController', ['$scope', '$location', '$st
 
         $scope.findGang = function() {
             Gang.get({
-                id: '537e63a274da97301e165543'
+                id: $scope.global.user.gang
             }, function(gang) {
                 $scope.gang = gang;
             });
@@ -35,10 +35,11 @@ angular.module('mean').controller('GameController', ['$scope', '$location', '$st
                 description: this.description
             });
 
-            gang.$save(function(response) {
+            gang.$save(function(gang) {
                 $location.path('/gangs/list');
-                $scope.gangs.push(response);
+                $scope.global.user.gang = gang._id;
+                $scope.gangs.push(gang);
             });
         };
     }
-]);
+);

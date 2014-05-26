@@ -6,7 +6,6 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-
 /**
  * Gang Schema
  */
@@ -29,11 +28,10 @@ var GangSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'User'
     },
-    members: {
-        type: Array,
-        default: [],
-        ref: 'User'
-    }
+    members: [{
+        type : Schema.ObjectId,
+        ref : 'User'
+    }]
 });
 
 /**
@@ -51,7 +49,10 @@ GangSchema.path('title').validate(function(title) {
 GangSchema.statics.load = function(id, cb) {
     this.findOne({
         _id: id
-    }).populate('boss', 'name username').exec(cb);
+    })
+    .populate('boss', 'name username')
+    .populate('members', 'name username')
+    .exec(cb);
 };
 
 mongoose.model('Gang', GangSchema);
