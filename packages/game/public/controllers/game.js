@@ -71,7 +71,6 @@ angular.module('mean').controller('GameController',
         };
 
         $scope.kickPlayer = function(playerId){
-
             Gang.kick(playerId, function(data){
                 $scope.gang.members = data.members;
             });

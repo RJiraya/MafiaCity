@@ -55,6 +55,7 @@ angular.module('mean.controllers.login', [])
                     $rootScope.user = $scope.user;
                     $rootScope.$emit('loggedin');
                     $location.url('/');
+                    console.log('okok');
                 })
                 .error(function(error) {
                     // Error: authentication failed
