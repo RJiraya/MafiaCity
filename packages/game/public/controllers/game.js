@@ -22,25 +22,38 @@ angular.module('mean').controller('GameController',
         };
 
         $scope.joinGang = function(id){
-            Gang.join(id, function(gang){
-                console.log(gang);
-                $scope.gang = gang;
-                $scope.global.user.gang = gang._id;
+            Gang.join(id, function(data){
+                $scope.global.user.gang = data.id;
+                $location.path('/gangs/' + data.id);
+                $scope.findGang();
             });
         };
 
         $scope.leaveGang = function(){
-            Gang.leave(function(){
-
+            Gang.leave(function(data){
+                $scope.global.user.gang = null;
+                $scope.gang = undefined;
+                $location.path('/gangs/');
             });
         };
 
         $scope.findGang = function() {
-            Gang.get({
-                id: $scope.global.user.gang
-            }, function(gang) {
-                $scope.gang = gang;
-            });
+            console.log($scope.global.user.gang);
+            if($stateParams.gangId !== '' && $stateParams.gangId !== undefined){
+               Gang.get({
+                   id: $stateParams.gangId
+               }, function(gang) {
+                   $scope.gang = gang;
+               });
+            }else if($scope.global.user.gang !== null){
+                Gang.get({
+                   id: $scope.global.user.gang
+                }, function(gang) {
+                    $scope.gang = gang;
+                });
+            }else{
+                $scope.gang = undefined;
+            }
         };
 
         $scope.createGang = function() {
@@ -50,9 +63,17 @@ angular.module('mean').controller('GameController',
             });
 
             gang.$save(function(gang) {
-                $location.path('/gangs/list');
+                $location.path('/gangs/' + gang._id);
                 $scope.global.user.gang = gang._id;
+                if($scope.gangs === undefined) $scope.gangs = [];
                 $scope.gangs.push(gang);
+            });
+        };
+
+        $scope.kickPlayer = function(playerId){
+
+            Gang.kick(playerId, function(data){
+                $scope.gang.members = data.members;
             });
         };
     }

@@ -41,7 +41,8 @@ var UserSchema = new Schema({
     },
     gang: {
         type: Schema.ObjectId,
-        ref: 'Gang'
+        ref: 'Gang',
+        default: null
     },
     hashed_password: {
         type: String,

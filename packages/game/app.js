@@ -40,7 +40,7 @@ Game.register(function(app, auth, database) {
 
     Game.menus.add({
         title: 'Mon Gang',
-        link: 'gangs',
+        link: 'myGangs',
         roles: ['authenticated'],
         menu: 'main'
     });

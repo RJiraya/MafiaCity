@@ -43,6 +43,13 @@ angular.module('mean').config(['$stateProvider',
                 loggedin: checkLoggedin
             }
         })
+        .state('myGangs', {
+            url: '/gangs/',
+            templateUrl: 'game/views/gangDetail.html',
+            resolve: {
+                loggedin: checkLoggedin
+            }
+        })
         .state('hideaway', {
 			url: '/hideaway',
 			templateUrl: 'game/views/hideaway.html',

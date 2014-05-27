@@ -1,33 +1,73 @@
-<section data-ng-controller="GameController" data-ng-init="findGang()" >
-    <div class="row">
-        <div class="form-group">
-            <label>Gang Name</label>
-            <span>{{gang.name}}</span>
+<section data-ng-controller="GameController" data-ng-init="findGang()">
+    <div data-ng-hide="gang===undefined">
+        <div class="row">
+            <div class="form-group">
+                <label>Gang Name</label>
+                <span>{{gang.name}}</span>
 
+            </div>
+            <div class="form-group">
+                <label>Boss</label>
+                <span>{{gang.boss.name}}</span>
+                <span>{{gang.members.length}}</span>
+            </div>
+            <button class="btn btn-info" ng-click="leaveGang()" ng-show="global.user.gang === gang._id">Leave</button>
+            <button class="btn btn-info" ng-click="joinGang(gang._id)" ng-show="global.user.gang === null">Join</button>
         </div>
-        <div class="form-group">
-            <label>Boss</label>
-            <span>{{gang.boss.name}}</span>
-        </div>
-        <button class="btn btn-info" ng-click="leaveGang()">Leave</button>
+
+        <!-- Table -->
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th data-ng-show="gang.boss._id === global.user._id && gang._id === global.user.gang">Tools</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr ng-repeat="member in gang.members">
+
+                <td>{{member._id}}</td>
+                <td>{{member.name}}</td>
+                <td>{{member.username}}</td>
+                <td data-ng-show="gang.boss._id === global.user._id && gang._id === global.user.gang && member._id !== global.user._id"><button data-ng-click="kickPlayer(member._id)">Kick</button></td>
+            </tr>
+            </tbody>
+        </table>
+
     </div>
 
-    <!-- Table -->
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Username</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="member in gang.members">
-            <td>{{member._id}}</td>
-            <td>{{member.name}}</td>
-            <td>{{member.username}}</td>
-        </tr>
-        </tbody>
-    </table>
-    {{gang}}
+    <div class="row" data-ng-show="gang===undefined">
+        <div class="col-md-6">
+            <div class="col-md-offset-5 col-md-2">
+                <a data-ng-href="#!/gangs/list" class="btn btn-info">Join Gang</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <form class="form-horizontal" role="form" data-ng-submit="createGang()">
+                <div class="form-group">
+                    <label mean-token="'create-name'" class="col-md-3 control-label">Name</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" data-ng-model="name" id="name" placeholder="Name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label mean-token="'create-description'" class="col-md-3 control-label">Description</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" data-ng-model="description" id="description" placeholder="Description" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-10 col-md-2">
+                        <button type="submit" class="btn btn-info">Créer</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </section>
+
+
