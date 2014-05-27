@@ -3,7 +3,7 @@
  * Route Server
  */
 
-var game = require('../controllers/game');
+var game = require('../controllers/gameServer');
 
 // The Package is past automatically as first parameter
 module.exports = function(Game, app, auth, database) {
@@ -61,6 +61,19 @@ module.exports = function(Game, app, auth, database) {
 
     app.post('/gangs/:id/kick', function(req, res, next) {
         game.kickPlayer(req, res, req.params.id);
+    });
+
+    app.post('/gangs/:id/setBoss', function(req, res, next) {
+        game.setBoss(req, res, req.params.id);
+    });
+
+    app.post('/technologies', function(req, res, next) {
+        game.getAllTechnologies(req, res);
+    });
+
+    app.post('/technologies/:id/upgrade', function(req, res, next) {
+        console.log(req.params.id);
+        game.upgradeTechnology(req, res, req.params.id);
     });
 
     app.route('/gangs')

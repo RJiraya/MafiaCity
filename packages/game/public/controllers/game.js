@@ -75,5 +75,17 @@ angular.module('mean').controller('GameController',
                 $scope.gang.members = data.members;
             });
         };
+
+        $scope.setBoss = function(playerId){
+            Gang.setBoss(playerId, function(data){
+                $scope.gang.boss = data.boss;
+            });
+        };
+
+        $scope.upgradeTechnology = function(techId){
+            Gang.upgrade(techId, function(data){
+                $scope.gang.technologies = data.technologies;
+            });
+        };
     }
 );

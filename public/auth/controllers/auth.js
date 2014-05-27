@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('mean.controllers.login', [])
-    .controller('LoginCtrl', ['$scope', '$rootScope', '$http', '$location',
-        function($scope, $rootScope, $http, $location) {
+    .controller('LoginCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',
+        function($scope, $rootScope, $http, $location, Global) {
             // This object will be filled by the form
             $scope.user = {};
 
@@ -16,8 +16,9 @@ angular.module('mean.controllers.login', [])
                     // authentication OK
                     $scope.loginError = 0;
                     $rootScope.user = response.user;
-                    console.log(response.user);
+                    Global.user = response.user;
                     $rootScope.$emit('loggedin');
+
                     if (response.redirect) {
                         if (window.location.href === response.redirect) {
                             //This is so an admin user will get full admin page
@@ -35,8 +36,8 @@ angular.module('mean.controllers.login', [])
             };
         }
     ])
-    .controller('RegisterCtrl', ['$scope', '$rootScope', '$http', '$location',
-        function($scope, $rootScope, $http, $location) {
+    .controller('RegisterCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',
+        function($scope, $rootScope, $http, $location, Global) {
             $scope.user = {};
 
             $scope.register = function() {
@@ -52,10 +53,11 @@ angular.module('mean.controllers.login', [])
                 .success(function() {
                     // authentication OK
                     $scope.registerError = 0;
+                    $scope.user.gang = null;
                     $rootScope.user = $scope.user;
+                    Global.user = $scope.user;
                     $rootScope.$emit('loggedin');
                     $location.url('/');
-                    console.log('okok');
                 })
                 .error(function(error) {
                     // Error: authentication failed

@@ -1,20 +1,28 @@
 <section data-ng-controller="GameController" data-ng-init="findGang()">
     <div data-ng-hide="gang===undefined">
         <div class="row">
-            <div class="form-group">
-                <label>Gang Name</label>
-                <span>{{gang.name}}</span>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Gang Name</label>
+                    <span>{{gang.name}}</span>
+                </div>
+                <div class="form-group">
+                    <label>Boss</label>
+                    <span>{{gang.boss.name}}</span>
+                    <span>{{gang.members.length}}</span>
+                </div>
+                <button class="btn btn-info" ng-click="leaveGang()" ng-show="global.user.gang === gang._id">Leave</button>
+                <button class="btn btn-info" ng-click="joinGang(gang._id)" ng-show="global.user.gang === null">Join</button>
+            </div>
+            <div class="col-md-6">
+                <div ng-repeat="tech in gang.technologies">
+                    <label>Nom : {{tech.technology.name}}</label>
+                    <label>Niveau : {{tech.level}}</label>
+                    <button data-ng-click="upgradeTechnology(tech.technology._id)">Up</button>
 
+                </div>
             </div>
-            <div class="form-group">
-                <label>Boss</label>
-                <span>{{gang.boss.name}}</span>
-                <span>{{gang.members.length}}</span>
-            </div>
-            <button class="btn btn-info" ng-click="leaveGang()" ng-show="global.user.gang === gang._id">Leave</button>
-            <button class="btn btn-info" ng-click="joinGang(gang._id)" ng-show="global.user.gang === null">Join</button>
         </div>
-
         <!-- Table -->
         <table class="table">
             <thead>
@@ -32,7 +40,10 @@
                 <td>{{member._id}}</td>
                 <td>{{member.name}}</td>
                 <td>{{member.username}}</td>
-                <td data-ng-show="gang.boss._id === global.user._id && gang._id === global.user.gang && member._id !== global.user._id"><button data-ng-click="kickPlayer(member._id)">Kick</button></td>
+                <td data-ng-show="gang.boss._id === global.user._id && gang._id === global.user.gang">
+                    <button data-ng-show="member._id !== global.user._id" data-ng-click="kickPlayer(member._id)">Kick</button>
+                    <button data-ng-show="member._id !== global.user._id" data-ng-click="setBoss(member._id)">Set Boss</button>
+                </td>
             </tr>
             </tbody>
         </table>

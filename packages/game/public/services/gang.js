@@ -22,6 +22,18 @@ angular.module('mean').factory('Gang',  ['$resource', '$http',
             });
         };
 
+        consumer.setBoss = function(id, cb){
+            $http.post('gangs/' + id + '/setBoss').success(function(data) {
+                cb(data);
+            });
+        };
+
+        consumer.upgrade = function(id, cb){
+            $http.post('/technologies/' + id + '/upgrade').success(function(data) {
+                cb(data);
+            });
+        };
+
         return consumer;
     }
 ]);
