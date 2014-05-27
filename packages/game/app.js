@@ -23,14 +23,29 @@ Game.register(function(app, auth, database) {
         roles: ['authenticated'],
         menu: 'main'
     });
-	
+
+    Game.menus.add({
+        title: 'Mon avatar',
+        link: 'avatar',
+        roles: ['authenticated'],
+        menu: 'main'
+    });
+
+    Game.menus.add({
+        title: 'Créez votre avatar',
+        link: 'Create_avatar',
+        roles: ['authenticated'],
+        menu: 'main'
+    });
+
     Game.menus.add({
         title: 'Planque',
         link: 'hideaway',
         roles: ['authenticated'],
         menu: 'main'
     });
-	
+
+
     Game.menus.add({
         title: 'Gangs List',
         link: 'gangs list',

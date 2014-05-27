@@ -29,6 +29,20 @@ angular.module('mean').config(['$stateProvider',
             url: '/game/example',
             templateUrl: 'game/views/index.html'
         })
+        .state('avatar', {
+            url: '/avatar',
+            templateUrl: 'game/views/avatarDetail.html',
+            resolve: {
+                loggedin: checkLoggedin
+            }
+        })
+        .state('Create_avatar', {
+            url: '/avatar/create',
+            templateUrl: 'game/views/avatarCreation.html',
+            resolve: {
+                loggedin: checkLoggedin
+            }
+        })
 		.state('gangs list', {
 			url: '/gangs/list',
 			templateUrl: 'game/views/gangSearch.html',

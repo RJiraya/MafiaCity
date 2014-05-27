@@ -1,0 +1,55 @@
+<section data-ng-controller="GameController" data-ng-init="findGang()" >
+    <div class="row">
+        <div class="form-group">
+            <label>Avatar currently on the battlefield</label>
+        </div>
+        <button class="btn btn-info" name="creation_button"  ng-click="createAvatar()">CreateAvatar</button>
+        <button class="btn btn-info" ng-click="Upgrader()">Ask for promotion</button>
+        <button class="btn btn-info" ng-click="Downgrader()">Ask for degradation</button>
+        <button class="btn btn-info" ng-click="DestroyAvatar()">Destroy avatar</button>
+    </div>
+
+
+    <!-- Table -->
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Rank</th>
+            <th>Weapon</th>
+            <th>Consummables</th>
+            <th>Faction</th>
+            <th>Localisation</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{avatar._id}}
+                <img src=D:\Image\Photo\yakuza_men.pdf" height="30" width="30">
+            </td>
+            <td>{{avatar.name}}</td>
+            <td>{{avatar.rank}}</td>
+            <td>{{avatar.weapon}}
+                <script type="text/javascript" src="."
+                        for(int i=0;i<sizeof(wepon);i++)
+                        {
+                            <li>weapon[i]; </li>
+                        }
+                </script>
+            </td>
+            <td>{{avatar.consummables}}
+                <script type="text/javascript" src="."
+                        for(int i=0;i<sizeof(wepon);i++)
+                {
+                <li>consummable[i]; </li>
+                        }
+                </script>
+            </td>
+            <td>{{avatar.faction}}
+            </td>
+            <td>{{avatar.localisation}}</td>
+        </tr>
+        </tbody>
+    </table>
+</section>
