@@ -15,10 +15,10 @@
                 <button class="btn btn-info" ng-click="joinGang(gang._id)" ng-show="global.user.gang === null">Join</button>
             </div>
             <div class="col-md-6">
-                <div ng-repeat="tech in gang.technologies">
+                <div data-ng-repeat="tech in gang.technologies">
                     <label>Nom : {{tech.technology.name}}</label>
                     <label>Niveau : {{tech.level}}</label>
-                    <button data-ng-click="upgradeTechnology(tech.technology._id)">Up</button>
+                    <button data-ng-click="upgradeTechnology(tech.technology._id)" data-ng-show="global.user._id === gang.boss._id">Up</button>
 
                 </div>
             </div>

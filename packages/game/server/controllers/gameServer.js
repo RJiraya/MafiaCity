@@ -1,10 +1,10 @@
 'use strict';
+
+
+
 /**
  *  Controller Server
  */
-
-
-
 var mongoose = require('mongoose'),
     Technology = mongoose.model('Technology'),
     User = mongoose.model('User'),
@@ -32,7 +32,7 @@ exports.createGang = function(req, res) {
 	var gang = new Gang(req.body);
     //Create gang
     gang.boss = req.user;
-    gang.members.push(req.user);
+    gang.members.push({ member : req.user, rank : 0 });
     Technology.find().exec(function(err, techs) {
         if (err) {
             res.render('error', {
@@ -49,8 +49,8 @@ exports.createGang = function(req, res) {
             // Save gang
             gang.save(function(err) {
                 if (err) {
-                    return res.send('gangs', {
-                        errors: err.errors
+                    res.render('error', {
+                        status: 500
                     });
                 } else {
                     // then save user
@@ -172,7 +172,7 @@ exports.getAllGang = function(req, res) {
  * Technologies
  */
  exports.getAllTechnologies = function(req, res) {
-     Technology.find().populate('boss', 'name username').exec(function(err, techs) {
+     Technology.find().exec(function(err, techs) {
          if (err) {
              res.render('error', {
                  status: 500

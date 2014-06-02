@@ -38,7 +38,6 @@ angular.module('mean').controller('GameController',
         };
 
         $scope.findGang = function() {
-            console.log($scope.global.user.gang);
             if($stateParams.gangId !== '' && $stateParams.gangId !== undefined){
                Gang.get({
                    id: $stateParams.gangId
@@ -63,6 +62,7 @@ angular.module('mean').controller('GameController',
             });
 
             gang.$save(function(gang) {
+                console.log(gang);
                 $location.path('/gangs/' + gang._id);
                 $scope.global.user.gang = gang._id;
                 if($scope.gangs === undefined) $scope.gangs = [];

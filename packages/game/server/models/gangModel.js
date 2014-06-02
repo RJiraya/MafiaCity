@@ -28,9 +28,16 @@ var GangSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'User'
     },
-    members: [{
-        type : Schema.ObjectId,
-        ref : 'User'
+    members: [
+    {
+        member : {
+            type : Schema.ObjectId,
+            ref : 'User'
+        },
+        rank : {
+            type : Schema.ObjectId,
+            ref : 'Rank'
+        }
     }],
     technologies: [{
         level : {
@@ -78,7 +85,8 @@ GangSchema.statics.load = function(id, cb) {
         _id: id
     })
     .populate('boss', 'name username')
-    .populate('members', 'name username')
+    .populate('members.member', 'name username')
+    .populate('members.rank', 'name')
     .populate('technologies.technology', 'name maxLevel')
     .exec(cb);
 };
