@@ -1,0 +1,59 @@
+/**
+* Cleanup
+*/
+db.technologies.drop()
+db.gangs.drop()
+db.ranks.drop()
+db.users.drop()
+
+
+/**
+* Technologies
+*/
+db.runCommand( { create: "technologies" } )
+
+var technologies = [
+	{
+		name : 'Trafique d\'armes',
+		maxLevel : 20
+	},
+	{
+		name : 'Trafique de drogues',
+		maxLevel : 20
+	},
+	{
+		name : 'Braquages',
+		maxLevel : 20
+	}
+]
+
+for(var i = 0; i < technologies.length; i++){
+	db.technologies.insert(technologies[i])
+}
+
+
+
+/**
+* Ranks
+*/
+db.runCommand( { create: "ranks" } )
+
+var ranks = [
+	{
+		name : 'Membre',
+		_id : 0
+	},
+	{
+		name : 'Vétérant',
+		_id : 1
+	},
+	{
+		name : 'Bras Droit',
+		_id : 2
+	}
+]
+
+for(var i = 0; i < ranks.length; i++){
+	db.ranks.insert(ranks[i])
+}
+
