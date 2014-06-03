@@ -1,53 +1,67 @@
 <section data-ng-controller="GameController" data-ng-init="findGang()">
     <div data-ng-hide="gang===undefined">
+
         <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Gang Name</label>
-                    <span>{{gang.name}}</span>
-                </div>
-                <div class="form-group">
-                    <label>Boss</label>
-                    <span>{{gang.boss.name}}</span>
-                    <span>{{gang.members.length}}</span>
-                </div>
-                <button class="btn btn-info" ng-click="leaveGang()" ng-show="global.user.gang === gang._id">Leave</button>
-                <button class="btn btn-info" ng-click="joinGang(gang._id)" ng-show="global.user.gang === null">Join</button>
-            </div>
-            <div class="col-md-6">
-                <div data-ng-repeat="tech in gang.technologies">
-                    <label>Nom : {{tech.technology.name}}</label>
-                    <label>Niveau : {{tech.level}}</label>
-                    <button data-ng-click="upgradeTechnology(tech.technology._id)" data-ng-show="global.user._id === gang.boss._id">Up</button>
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Gang Detail
+
 
                 </div>
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Gang Name</label>
+                            <span>{{gang.name}}</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Nombre de membre</label>
+                            <span>{{gang.members.length}}</span>
+                        </div>
+                        <button class="btn btn-info" ng-click="leaveGang()" ng-show="global.user.gang === gang._id && gang.boss._id !== global.user._id">Leave</button>
+                        <button class="btn btn-info" ng-click="joinGang(gang._id)" ng-show="global.user.gang === null">Join</button>
+                    </div>
+                    <div class="col-md-6">
+                        <div data-ng-repeat="tech in gang.technologies">
+                            <label>Nom : {{tech.technology.name}}</label>
+                            <label>Niveau : {{tech.level}}</label>
+                            <button data-ng-click="upgradeTechnology(tech.technology._id)" data-ng-show="hasGangAuthorisation(3)">Up</button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Rank</th>
+                        <th data-ng-show="hasGangAuthorisation(2)">Tools</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr ng-repeat="member in gang.members">
+                        <td>{{member.member.username}}</td>
+                        <td ng-show="member.member._id !== global.user._id && hasGangAuthorisation(3)">
+                            <select ng-init="value.selected = value.selected || ranks[member.rank.level]"
+                                    ng-model="value.selected"
+                                    ng-change="setRank(member.member._id, value.selected)"
+                                    ng-options="value.name for value in ranks">
+                            </select>
+                        </td>
+                        <td ng-hide="member.member._id !== global.user._id && hasGangAuthorisation(3)">
+                            {{member.rank.name}}
+                        </td>
+                        <td data-ng-show="hasGangAuthorisation(2)">
+                            <button data-ng-show="member.member._id !== global.user._id" data-ng-click="kickPlayer(member.member._id)">Kick</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <!-- Table -->
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Username</th>
-                <th data-ng-show="gang.boss._id === global.user._id && gang._id === global.user.gang">Tools</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <tr ng-repeat="member in gang.members">
-
-                <td>{{member._id}}</td>
-                <td>{{member.name}}</td>
-                <td>{{member.username}}</td>
-                <td data-ng-show="gang.boss._id === global.user._id && gang._id === global.user.gang">
-                    <button data-ng-show="member._id !== global.user._id" data-ng-click="kickPlayer(member._id)">Kick</button>
-                    <button data-ng-show="member._id !== global.user._id" data-ng-click="setBoss(member._id)">Set Boss</button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
     </div>
 
     <div class="row" data-ng-show="gang===undefined">

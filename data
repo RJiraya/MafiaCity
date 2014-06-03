@@ -41,15 +41,19 @@ db.runCommand( { create: "ranks" } )
 var ranks = [
 	{
 		name : 'Membre',
-		_id : 0
+		level : 0
 	},
 	{
 		name : 'Vétérant',
-		_id : 1
+		level : 1
 	},
 	{
 		name : 'Bras Droit',
-		_id : 2
+		level : 2
+	},
+	{
+		name : 'Boss',
+		level : 3
 	}
 ]
 
@@ -57,3 +61,24 @@ for(var i = 0; i < ranks.length; i++){
 	db.ranks.insert(ranks[i])
 }
 
+
+/**
+* Resources
+*/
+db.runCommand( { create: "resources" } )
+
+var resources = [
+	{
+		name : 'Guns'
+	},
+	{
+		name : 'Drogues'		
+	},
+	{
+		name : 'Money'		
+	}
+]
+
+for(var i = 0; i < resources.length; i++){
+	db.resources.insert(resources[i])
+}

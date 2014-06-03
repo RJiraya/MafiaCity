@@ -44,6 +44,20 @@ var UserSchema = new Schema({
         ref: 'Gang',
         default: null
     },
+    rankLevel: {
+        type: Number,
+        default: null
+    },
+    resources: [{
+        resource : {
+            type: Schema.ObjectId,
+            default: null
+        },
+        count : {
+            type : Number,
+            default : 0
+        }
+    }],
     hashed_password: {
         type: String,
         validate: [validatePresenceOf, 'Password cannot be blank']

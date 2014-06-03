@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
+    Resource = mongoose.model('Resource'),
     User = mongoose.model('User');
 
 /**
@@ -59,6 +60,14 @@ exports.create = function(req, res, next) {
 
     // Hard coded for now. Will address this with the user permissions system in v0.3.5
     user.roles = ['authenticated'];
+    Resource.find(function(err, resources){
+        for(var key in resources){
+            user.resources.push({
+                resource : resources[key],
+                count : 500
+            });
+        }
+    });
 
     user.save(function(err) {
         if (err) {
@@ -91,14 +100,13 @@ exports.me = function(req, res) {
  * Find user by id
  */
 exports.user = function(req, res, next, id) {
-    User
-        .findOne({
-            _id: id
-        })
-        .exec(function(err, user) {
-            if (err) return next(err);
-            if (!user) return next(new Error('Failed to load User ' + id));
-            req.profile = user;
-            next();
-        });
+    User.findOne({
+        _id: id
+    })
+    .exec(function(err, user) {
+        if (err) return next(err);
+        if (!user) return next(new Error('Failed to load User ' + id));
+        req.profile = user;
+        next();
+    });
 };

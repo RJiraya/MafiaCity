@@ -63,8 +63,12 @@ module.exports = function(Game, app, auth, database) {
         game.kickPlayer(req, res, req.params.id);
     });
 
-    app.post('/gangs/:id/setBoss', function(req, res, next) {
-        game.setBoss(req, res, req.params.id);
+    app.post('/gangs/:id/setRank/:level', function(req, res, next) {
+        game.setRank(req, res, req.params.id, req.params.level);
+    });
+
+    app.get('/ranks', function(req, res, next) {
+        game.getAllRanks(req, res);
     });
 
     app.post('/technologies', function(req, res, next) {

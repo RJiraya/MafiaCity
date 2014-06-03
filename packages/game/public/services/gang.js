@@ -22,8 +22,14 @@ angular.module('mean').factory('Gang',  ['$resource', '$http',
             });
         };
 
-        consumer.setBoss = function(id, cb){
-            $http.post('gangs/' + id + '/setBoss').success(function(data) {
+        consumer.setRank = function(id, level, cb){
+            $http.post('gangs/' + id + '/setRank/' + level).success(function(data) {
+                cb(data);
+            });
+        };
+
+        consumer.getRanks = function(cb){
+            $http.get('ranks').success(function(data) {
                 cb(data);
             });
         };
