@@ -5,6 +5,7 @@ db.technologies.drop()
 db.gangs.drop()
 db.ranks.drop()
 db.users.drop()
+db.resources.drop()
 
 
 /**

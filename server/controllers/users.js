@@ -67,26 +67,27 @@ exports.create = function(req, res, next) {
                 count : 500
             });
         }
-    });
 
-    user.save(function(err) {
-        if (err) {
-            switch (err.code) {
-                case 11000:
-                case 11001:
-                    res.status(400).send('Username already taken');
-                    break;
-                default:
-                    res.status(400).send('Please fill all the required fields');
+
+        user.save(function(err) {
+            if (err) {
+                switch (err.code) {
+                    case 11000:
+                    case 11001:
+                        res.status(400).send('Username already taken');
+                        break;
+                    default:
+                        res.status(400).send('Please fill all the required fields');
+                }
+
+                return res.status(400);
             }
-
-            return res.status(400);
-        }
-        req.logIn(user, function(err) {
-            if (err) return next(err);
-            return res.redirect('/');
+            req.logIn(user, function(err) {
+                if (err) return next(err);
+                return res.redirect('/');
+            });
+            res.status(200);
         });
-        res.status(200);
     });
 };
 /**
@@ -103,6 +104,7 @@ exports.user = function(req, res, next, id) {
     User.findOne({
         _id: id
     })
+    .populate('resources.resource')
     .exec(function(err, user) {
         if (err) return next(err);
         if (!user) return next(new Error('Failed to load User ' + id));
