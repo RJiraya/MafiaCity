@@ -101,6 +101,7 @@ exports.me = function(req, res) {
  * Find user by id
  */
 exports.user = function(req, res, next, id) {
+
     User.findOne({
         _id: id
     })

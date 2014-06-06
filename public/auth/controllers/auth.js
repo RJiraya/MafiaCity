@@ -17,6 +17,7 @@ angular.module('mean.controllers.login', [])
                     $scope.loginError = 0;
                     $rootScope.user = response.user;
                     Global.user = response.user;
+                    Global.resources = 'test';
                     $rootScope.$emit('loggedin');
 
                     if (response.redirect) {
@@ -56,6 +57,7 @@ angular.module('mean.controllers.login', [])
                     $scope.user.gang = null;
                     $rootScope.user = $scope.user;
                     Global.user = $scope.user;
+                    Global.resources = 'test';
                     $rootScope.$emit('loggedin');
                     $location.url('/');
                 })
