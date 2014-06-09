@@ -25,8 +25,8 @@
                         <div data-ng-repeat="tech in gang.technologies">
                             <label>Nom : {{tech.technology.name}}</label>
                             <label>Niveau : {{tech.level}}</label>
-                            <button data-ng-click="upgradeTechnology(tech.technology._id)" data-ng-show="hasGangAuthorisation(3)">Up</button>
-
+                            <label>Cout : {{(tech.level+1)*(tech.level+1)*100}}</label>
+                            <button data-ng-click="upgradeTechnology(tech.technology._id)" data-ng-show="hasGangAuthorisation(3) && global.user.resources[$index].count >= (tech.level+1)*(tech.level+1)*100">Up</button>
                         </div>
                     </div>
                 </div>

@@ -5,7 +5,12 @@
 
 angular.module('mean').controller('GameController',
     function($scope,  $location, $stateParams, Global, Gang) {
+        //Ref Table
+        Global.resources = window.resources;
+
         $scope.global = Global;
+
+
 
         $scope.package = {
             name: 'game'
@@ -60,8 +65,6 @@ angular.module('mean').controller('GameController',
             });
         };
 
-
-
         $scope.createGang = function() {
             var gang = new Gang({
                 name: this.name,
@@ -81,7 +84,7 @@ angular.module('mean').controller('GameController',
         };
 
         /**
-         * Rules
+         * Actions
          */
         $scope.kickPlayer = function(playerId){
             Gang.kick(playerId, function(data){
@@ -98,6 +101,7 @@ angular.module('mean').controller('GameController',
         $scope.upgradeTechnology = function(techId){
             Gang.upgrade(techId, function(data){
                 $scope.gang.technologies = data.technologies;
+                $scope.global.user.resources = data.resources;
             });
         };
 

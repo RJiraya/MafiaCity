@@ -55,7 +55,7 @@ var UserSchema = new Schema({
         },
         count : {
             type : Number,
-            default : 0
+            default : 500
         }
     }],
     hashed_password: {

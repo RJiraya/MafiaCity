@@ -240,14 +240,17 @@ exports.getAllGang = function(req, res) {
 
                 var i = gang.getTechnology(id);
 
-                if(gang.canUpgradeTechnology(id)){
-                    console.log(i);
-                    console.log(gang.technologies[i]);
+                if(gang.canUpgradeTechnology(id) && (req.user.resources[i].count >= (gang.technologies[i].level+1)*(gang.technologies[i].level+1)*100)){
+                    req.user.resources[i].count = req.user.resources[i].count - ((gang.technologies[i].level+1)*(gang.technologies[i].level+1)*100);
                     gang.technologies[i].level++;
+                    console.log(req.user.resources[i].count);
                 }
 
                 gang.save(function(err, gang){
-                    res.jsonp(gang);
+                    req.user.save(function(){
+                        res.jsonp({technologies : gang.technologies, resources : req.user.resources});
+                    });
+
                 });
           }
       });

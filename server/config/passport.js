@@ -8,6 +8,7 @@ var mongoose = require('mongoose'),
     GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
     LinkedinStrategy = require('passport-linkedin').Strategy,
     User = mongoose.model('User'),
+    Resource = mongoose.model('Resource'),
     config = require('./config');
 
 module.exports = function(passport) {
@@ -98,21 +99,31 @@ module.exports = function(passport) {
                 if (err) {
                     return done(err);
                 }
-                if (!user) {
-                    user = new User({
-                        name: profile.displayName,
-                        email: profile.emails[0].value,
-                        username: profile.username || profile.emails[0].value.split('@')[0],
-                        provider: 'facebook',
-                        facebook: profile._json
-                    });
-                    user.save(function(err) {
-                        if (err) console.log(err);
+                Resource.find(function(err, resources){
+
+                    if (!user) {
+                        user = new User({
+                            name: profile.displayName,
+                            email: profile.emails[0].value,
+                            username: profile.username || profile.emails[0].value.split('@')[0],
+                            provider: 'facebook',
+                            facebook: profile._json
+                        });
+
+                        for(var key in resources){
+                            user.resources.push({
+                                resource : resources[key]
+                            });
+                        }
+
+                        user.save(function(err) {
+                            if (err) console.log(err);
+                            return done(err, user);
+                        });
+                    } else {
                         return done(err, user);
-                    });
-                } else {
-                    return done(err, user);
-                }
+                    }
+                });
             });
         }
     ));

@@ -63,8 +63,7 @@ exports.create = function(req, res, next) {
     Resource.find(function(err, resources){
         for(var key in resources){
             user.resources.push({
-                resource : resources[key],
-                count : 500
+                resource : resources[key]
             });
         }
 
