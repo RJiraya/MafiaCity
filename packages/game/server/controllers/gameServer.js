@@ -8,14 +8,50 @@
 var mongoose = require('mongoose'),
     Technology = mongoose.model('Technology'),
     Rank = mongoose.model('Rank'),
+    City = mongoose.model('City'),
     User = mongoose.model('User'),
     Gang = mongoose.model('Gang');
 
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//                                              Cities
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Find city by id
+ */
+exports.city = function(req, res, next, id) {
+    City.load(id, function(err, city) {
+        if (err) return next(err);
+        if (!city) return next(new Error('Failed to load city ' + id));
+        req.city = city;
+        next();
+    });
+};
 
 /**
- * Find gang by id
+ * Find all cities
+ */
+exports.getAllCity = function(req, res){
+    City.find().exec(function(err, cities) {
+        if (err) {
+            res.render('error', {
+             status: 500
+            });
+        } else {
+            res.jsonp(cities);
+        }
+     });
+};
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//                                              Gangs
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Find city by id
  */
 exports.gang = function(req, res, next, id) {
     Gang.load(id, function(err, gang) {
@@ -243,7 +279,6 @@ exports.getAllGang = function(req, res) {
                 if(gang.canUpgradeTechnology(id) && (req.user.resources[i].count >= (gang.technologies[i].level+1)*(gang.technologies[i].level+1)*100)){
                     req.user.resources[i].count = req.user.resources[i].count - ((gang.technologies[i].level+1)*(gang.technologies[i].level+1)*100);
                     gang.technologies[i].level++;
-                    console.log(req.user.resources[i].count);
                 }
 
                 gang.save(function(err, gang){

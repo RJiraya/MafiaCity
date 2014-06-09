@@ -5,6 +5,8 @@ db.technologies.drop()
 db.gangs.drop()
 db.ranks.drop()
 db.users.drop()
+db.cities.drop()
+db.buildings.drop()
 db.resources.drop()
 
 
@@ -82,4 +84,61 @@ var resources = [
 
 for(var i = 0; i < resources.length; i++){
 	db.resources.insert(resources[i])
+}
+
+/**
+* City
+*/
+db.runCommand( { create: "cities" } )
+
+var cities = [
+	{
+		name : 'Brest',
+		lat : 0,
+		lng : 0,
+		maxBuildingCount : 2
+	},
+	{
+		name : 'Rennes',
+		lat : 0,
+		lng : 0,
+		maxBuildingCount : 5
+	}
+]
+
+for(var i = 0; i < cities.length; i++){
+	db.cities.insert(cities[i])
+}
+
+/**
+* Buildings
+*/
+db.runCommand( { create: "buildings" } )
+
+var buildings = [
+	{
+		name : 'QG',
+		description : 'eafaefeafaefaefe'
+	},
+	{
+		name : 'Laboratoire de drogues',
+		description : 'faefaefaefeafeafeafea'		
+	},
+	{
+		name : 'Armurerie',
+		description : 'fffeefefefeaf'
+	},
+	{
+		name : 'Repaire de motards',
+		description : 'faefeafaefaefeafaefaefaef'		
+	}
+	,
+	{
+		name : 'Bordel',
+		description : 'faefeafaefaefeafaefaefaef'		
+	}
+]
+
+for(var i = 0; i < buildings.length; i++){
+	db.buildings.insert(buildings[i])
 }

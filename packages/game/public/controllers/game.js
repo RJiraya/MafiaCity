@@ -4,7 +4,7 @@
  */
 
 angular.module('mean').controller('GameController',
-    function($scope,  $location, $stateParams, Global, Gang) {
+    function($scope,  $location, $stateParams, Global, Gang, City) {
         //Ref Table
         Global.resources = window.resources;
 
@@ -18,9 +18,20 @@ angular.module('mean').controller('GameController',
 
         $scope.nameFilter = '';
 
-        /**
-         * Gangs
-         */
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//                                              Cities
+///////////////////////////////////////////////////////////////////////////////////////////////////
+        $scope.findAllCity = function(){
+            City.query(function(cities){
+                $scope.cities = cities;
+            });
+        };
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//                                              Gangs
+///////////////////////////////////////////////////////////////////////////////////////////////////
         $scope.findAllGang = function(){
             Gang.query(function(gangs) {
                 $scope.gangs = gangs;

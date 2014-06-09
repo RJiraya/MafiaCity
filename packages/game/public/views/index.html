@@ -1,26 +1,36 @@
-<div class="" data-ng-controller="GameController">
-	<h1>Example view from your new awesome package</h1>
-	<h2>Package: {{package.name}}</h2>
-	<ol>
-		<li>
-			<a href="game/example/anyone">Server route that anyone can access</a>
-		</li>
-		<li>
-			<a href="game/example/auth">Server route that requires authentication</a>
-		</li>
-		<li>
-			<a href="game/example/admin">Server route that requires admin user</a>
-		</li>
-		<li>
-			<a href="game/example/render">Raw Html rendering example from using swig</a>
-		</li>
-	</ol>
-	<h3><img src="/game/assets/img/logo.png" /></h3>
-	</br>
-	<p class="alert alert-info">You can find your package in /packages/game</p>
-	</br>
-	<p class="alert alert-warning">MEAN versions prior to 0.3.2 will be in /node_modules/game</p>
-	</br>
-	<h3><a href="http://www.mean.io/#!/docs">Documentation</a></h3>
-	</br>
+<div class="" data-ng-controller="GameController" data-ng-init="findAllCity()">
+    <div class="panel panel-default" data-ng-repeat="city in cities">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <label>{{city.name}}</label>
+        </div>
+
+        <div class="panel-body">
+            <div class="form-group">
+                <label mean-token="'create-name'" class="col-md-3 control-label">Building available : {{ city.maxBuildingCount - city.buildings.length }}</label>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-info">Add Building</button>
+            </div>
+        </div>
+
+
+        <!-- Table -->
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Gang</th>
+                <th>Level</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="building in city.buildings">
+                    <td>{{building.building}}</td>
+                    <td>{{building.gang}}</td>
+                    <td>{{building.level}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

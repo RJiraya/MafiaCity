@@ -83,4 +83,16 @@ module.exports = function(Game, app, auth, database) {
     app.route('/gangs')
         .get(game.getAllGang)
         .post(auth.requiresLogin, game.createGang);
+
+
+
+
+    /**
+     * Cities
+     */
+     app.get('/cities/:id', function(req, res, next) {
+         game.getCity(req, res, next, req.params.id);
+     });
+     app.route('/cities')
+         .get(game.getAllCity);
 };
