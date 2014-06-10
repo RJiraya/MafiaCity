@@ -5,7 +5,6 @@ angular.module('mean.controllers.login', [])
         function($scope, $rootScope, $http, $location, Global) {
             // This object will be filled by the form
             $scope.user = {};
-
             // Register the login() function
             $scope.login = function() {
                 $http.post('/login', {
@@ -17,7 +16,7 @@ angular.module('mean.controllers.login', [])
                     $scope.loginError = 0;
                     $rootScope.user = response.user;
                     Global.user = response.user;
-                    Global.resources = 'test';
+                    console.log(Global);
                     $rootScope.$emit('loggedin');
 
                     if (response.redirect) {
@@ -57,7 +56,6 @@ angular.module('mean.controllers.login', [])
                     $scope.user.gang = null;
                     $rootScope.user = $scope.user;
                     Global.user = $scope.user;
-                    Global.resources = 'test';
                     $rootScope.$emit('loggedin');
                     $location.url('/');
                 })

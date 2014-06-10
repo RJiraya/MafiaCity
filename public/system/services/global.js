@@ -7,6 +7,7 @@ angular.module('mean.system').factory('Global', [
         var _this = this;
         _this._data = {
             user: window.user,
+            resources: window.resources,
             authenticated: false,
             isAdmin: false
         };

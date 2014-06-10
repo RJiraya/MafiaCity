@@ -24,6 +24,7 @@
     	</li>        
     </ul>
     <ul class="navbar-nav nav" data-ng-show="global.authenticated">
+
         <li data-ng-repeat="resource in global.resources"><a>{{resource.name + ' ' + global.user.resources[$index].count}}</a></li>
     	<li>
     		<a href="#">{{global.user.name}}</a>

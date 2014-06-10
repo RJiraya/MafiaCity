@@ -18,12 +18,12 @@ Game.register(function(app, auth, database) {
 
     //We are adding a link to the main menu for all authenticated users
     Game.menus.add({
-        title: 'game example page',
+        title: 'World',
         link: 'game example page',
         roles: ['authenticated'],
         menu: 'main'
     });
-
+/*
     Game.menus.add({
         title: 'Mon avatar',
         link: 'avatar',
@@ -37,7 +37,7 @@ Game.register(function(app, auth, database) {
         roles: ['authenticated'],
         menu: 'main'
     });
-
+*/
     Game.menus.add({
         title: 'Planque',
         link: 'hideaway',

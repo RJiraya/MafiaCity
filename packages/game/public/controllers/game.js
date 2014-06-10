@@ -3,14 +3,12 @@
  *  Controller Client
  */
 
-angular.module('mean').controller('GameController',
+angular.module('mean').controller('GameController', [ '$scope',  '$location', '$stateParams', 'Global', 'Gang', 'City',
     function($scope,  $location, $stateParams, Global, Gang, City) {
         //Ref Table
         Global.resources = window.resources;
 
         $scope.global = Global;
-
-
 
         $scope.package = {
             name: 'game'
@@ -119,5 +117,5 @@ angular.module('mean').controller('GameController',
         $scope.hasGangAuthorisation = function(level){
             return $scope.global.user.rankLevel >= level;
         };
-    }
+    }]
 );

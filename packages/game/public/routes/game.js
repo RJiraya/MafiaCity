@@ -28,7 +28,7 @@ angular.module('mean').config(['$stateProvider',
         $stateProvider.state('game example page', {
             url: '/game/example',
             templateUrl: 'game/views/index.html'
-        })
+        })/*
         .state('avatar', {
             url: '/avatar',
             templateUrl: 'game/views/avatarDetail.html',
@@ -42,7 +42,7 @@ angular.module('mean').config(['$stateProvider',
             resolve: {
                 loggedin: checkLoggedin
             }
-        })
+        })*/
 		.state('gangs list', {
 			url: '/gangs/list',
 			templateUrl: 'game/views/gangSearch.html',
